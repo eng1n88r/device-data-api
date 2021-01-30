@@ -1,6 +1,6 @@
 ﻿using DeviceDataApi.Contracts;
 
-namespace DeviceDataApi.DataProcessors
+namespace DeviceDataApi.DataProcessors.Interfaces
 {
 	interface IDeviceDataProcessor<T>
 	{

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-
+using DeviceDataApi.Contracts;
 using DeviceDataApi.Services.Interfaces;
 
 using Microsoft.AspNetCore.Mvc;
@@ -32,10 +32,10 @@ namespace DeviceDataApi.Controllers
 		}
 
 		[HttpPost]
-		[Route("device-data")]
-		public async Task<IActionResult> SaveDeviceData(object input)
+		[Route("device-type-a-data")]
+		public async Task<IActionResult> SaveDeviceTypeAData(DeviceTypeA input)
 		{
-			var result = await _dataProcessingService.ProcessDeviceData(input);
+			var result = await _dataProcessingService.ProcessDeviceTypeAData(input);
 
 			if (result.IsSuccess)
 			{
@@ -45,15 +45,29 @@ namespace DeviceDataApi.Controllers
 			return StatusCode(500, result.Message);
 		}
 
+		[HttpPost]
+		[Route("device-type-b-data")]
+		public async Task<IActionResult> SaveDeviceTypeBData(DeviceTypeB input)
+		{
+			var result = await _dataProcessingService.ProcessDeviceTypeBData(input);
+
+			if (result.IsSuccess)
+			{
+				return Ok();
+			}
+
+			return StatusCode(500, result.Message);
+		}
+
 		[HttpDelete]
 		[Route("device-data")]
-		public async Task<IActionResult>ClearDeviceData()
+		public async Task<IActionResult> ClearDeviceData()
 		{
 			var result = await _dataProcessingService.ClearDataStorage();
 
 			if (result.IsSuccess)
 			{
-				return Ok(result);
+				return Ok();
 			}
 
 			return StatusCode(500, result.Message);

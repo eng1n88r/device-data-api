@@ -9,7 +9,9 @@ using Phema.Caching;
 namespace DeviceDataApi.Repositories
 {
 	/// <summary>
-	/// Class represents concrete implementation on storage. Could be relational database, NoSQL database, etc. In this particular case is simplified to distributed cache.
+	/// Class represents concrete implementation on storage.
+	/// Could be relational database, NoSQL database, etc.
+	/// In this particular case is simplified to distributed cache.
 	/// </summary>
 	public class InMemoryDistributedRepository : IRepository
 	{

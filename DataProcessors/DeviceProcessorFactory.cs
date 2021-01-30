@@ -22,7 +22,7 @@ namespace DeviceDataApi.DataProcessors
 		public abstract DeviceBProcessor CreateDeviceTypeBProcessor();
 	}
 
-	public class DeviceDataProcessor : DeviceProcessorFactory
+	public class DeviceDataProcessorFactory : DeviceProcessorFactory
 	{
 		public override DeviceAProcessor CreateDeviceTypeAProcessor()
 		{

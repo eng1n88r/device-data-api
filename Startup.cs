@@ -37,7 +37,7 @@ namespace DeviceDataApi
 				.AddDistributedMemoryCache();
 
 			services.AddScoped<IRepository, InMemoryDistributedRepository>();
-			services.AddScoped<DeviceProcessorFactory, DeviceDataProcessor>();
+			services.AddScoped<DeviceProcessorFactory, DeviceDataProcessorFactory>();
 			services.AddScoped<IDeviceDataProcessingService, DeviceDataProcessingService>();
 		}
 

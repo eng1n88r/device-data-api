@@ -12,6 +12,7 @@ namespace DeviceDataApi.Services
 	public class DeviceDataProcessingService : IDeviceDataProcessingService
 	{
 		private readonly IRepository _repository;
+
 		private readonly DeviceAProcessor _deviceAProcessor;
 		private readonly DeviceBProcessor _deviceBProcessor;
 
