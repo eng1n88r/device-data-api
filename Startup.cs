@@ -1,19 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DeviceDataApi.Contracts;
-using DeviceDataApi.Repository;
-using DeviceDataApi.Repository.Interfaces;
+using DeviceDataApi.DataProcessors;
+using DeviceDataApi.Repositories;
+using DeviceDataApi.Repositories.Interfaces;
+using DeviceDataApi.Services;
+using DeviceDataApi.Services.Interfaces;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+
 using Phema.Caching;
 
 namespace DeviceDataApi
@@ -39,7 +36,9 @@ namespace DeviceDataApi
 			services.AddDistributedCache()
 				.AddDistributedMemoryCache();
 
-			services.AddScoped<IRepository<DeviceData>, InMemoryDistributedRepository>();
+			services.AddScoped<IRepository, InMemoryDistributedRepository>();
+			services.AddScoped<DeviceProcessorFactory, DeviceDataProcessor>();
+			services.AddScoped<IDeviceDataProcessingService, DeviceDataProcessingService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

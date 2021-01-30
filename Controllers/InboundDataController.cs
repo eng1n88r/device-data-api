@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-using DeviceDataApi.Contracts;
 using DeviceDataApi.Services.Interfaces;
 
 using Microsoft.AspNetCore.Mvc;

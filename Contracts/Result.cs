@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Reflection.Metadata.Ecma335;
 
 namespace DeviceDataApi.Contracts
 {
 	public class Result
 	{
 		public bool IsSuccess { get; }
+
 		public bool IsFailure => !IsSuccess;
+
 		public string Message { get; }
 
 		protected Result(bool success, string message)

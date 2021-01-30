@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 using DeviceDataApi.Contracts;
-using DeviceDataApi.Repository.Interfaces;
+using DeviceDataApi.DataProcessors;
+using DeviceDataApi.Repositories.Interfaces;
 using DeviceDataApi.Services.Interfaces;
 
 namespace DeviceDataApi.Services
 {
 	public class DeviceDataProcessingService : IDeviceDataProcessingService
 	{
-		private readonly IRepository<DeviceData> _repository;
+		private readonly IRepository _repository;
+		private readonly DeviceAProcessor _deviceAProcessor;
+		private readonly DeviceBProcessor _deviceBProcessor;
 
-		public DeviceDataProcessingService(IRepository<DeviceData> repository)
+		public DeviceDataProcessingService(DeviceProcessorFactory factory, IRepository repository)
 		{
 			_repository = repository;
+
+			_deviceAProcessor = factory.CreateDeviceTypeAProcessor();
+			_deviceBProcessor = factory.CreateDeviceTypeBProcessor();
 		}
 
 		public async Task<Result> ProcessDeviceData(object data)
@@ -31,11 +36,13 @@ namespace DeviceDataApi.Services
 			}
 		}
 
-		public async Task<Result> ProcessDeviceTypeAData(IEnumerable<DeviceTypeA> data)
+		public async Task<Result> ProcessDeviceTypeAData(DeviceTypeA data)
 		{
 			try
 			{
+				var deviceData = _deviceAProcessor.ProcessDeviceData(data);
 
+				await _repository.SaveDataData(deviceData);
 
 				return Result.Ok();
 			}
@@ -46,10 +53,13 @@ namespace DeviceDataApi.Services
 			}
 		}
 
-		public async Task<Result> ProcessDeviceTypeBData(IEnumerable<DeviceTypeB> data)
+		public async Task<Result> ProcessDeviceTypeBData(DeviceTypeB data)
 		{
 			try
 			{
+				var deviceData = _deviceBProcessor.ProcessDeviceData(data);
+
+				await _repository.SaveDataData(deviceData);
 
 				return Result.Ok();
 			}
@@ -90,5 +100,6 @@ namespace DeviceDataApi.Services
 				return Result.Fail($"Failed to read clear data storage: {ex.Message}");
 			}
 		}
+
 	}
 }

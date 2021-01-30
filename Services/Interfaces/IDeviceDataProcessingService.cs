@@ -10,8 +10,8 @@ namespace DeviceDataApi.Services.Interfaces
 		Task<Result> ProcessDeviceData(object data);
 
 		// Option 2 for concrete processing
-		Task<Result> ProcessDeviceTypeAData(IEnumerable<DeviceTypeA> data);
-		Task<Result> ProcessDeviceTypeBData(IEnumerable<DeviceTypeB> data);
+		Task<Result> ProcessDeviceTypeAData(DeviceTypeA data);
+		Task<Result> ProcessDeviceTypeBData(DeviceTypeB data);
 
 		Task<Result<IEnumerable<DeviceData>>> GetDataForDashboard();
 
