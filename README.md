@@ -3,7 +3,8 @@ Coding Test Project
 
 I attempted to solve the problem in 2 ways (each has it's own pros and cons). Overall problem solution is done via
 tranforming data from two different device types (json outputs) into some standard data type and then agreggation of data to display it. 
-Storage implemented via distributed cache. Technically, in case of using relational database aggregation logic could be done in stored procedure.
+Storage implemented via distributed cache. Technically, in case of using relational database aggregation logic could be done in stored procedure and
+storing data in unified format will allow us to slice data differently for reporting purposes.
 
 Solution is a .NET 5 API that consists of the following endpoints:
 * POST /api/v1/device-data (Option 1)
