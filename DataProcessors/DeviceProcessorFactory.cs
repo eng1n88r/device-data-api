@@ -1,17 +1,19 @@
-﻿using DeviceDataApi.Contracts;
+﻿using System.Collections.Generic;
+
+using DeviceDataApi.Contracts;
 
 namespace DeviceDataApi.DataProcessors
 {
 	public abstract class DeviceAProcessor
 	{
-		public abstract DeviceData ProcessDeviceData(DeviceTypeA data);
+		public abstract IList<DeviceData> ProcessDeviceData(DeviceTypeAOutput data);
 
 		public abstract MeasurementType IdentifyMeasurementType(string measurement);
 	}
 
 	public abstract class DeviceBProcessor
 	{
-		public abstract DeviceData ProcessDeviceData(DeviceTypeB data);
+		public abstract IList<DeviceData> ProcessDeviceData(DeviceTypeBOutput data);
 
 		public abstract MeasurementType IdentifyMeasurementType(string measurement);
 	}

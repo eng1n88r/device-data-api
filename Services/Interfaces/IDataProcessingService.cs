@@ -4,16 +4,16 @@ using DeviceDataApi.Contracts;
 
 namespace DeviceDataApi.Services.Interfaces
 {
-	public interface IDeviceDataProcessingService
+	public interface IDataProcessingService
 	{
 		// Option 1 for generic processing
 		Task<Result> ProcessDeviceData(object data);
 
 		// Option 2 for concrete processing
-		Task<Result> ProcessDeviceTypeAData(DeviceTypeA data);
-		Task<Result> ProcessDeviceTypeBData(DeviceTypeB data);
+		Task<Result> ProcessDeviceTypeAData(DeviceTypeAOutput data);
+		Task<Result> ProcessDeviceTypeBData(DeviceTypeBOutput data);
 
-		Task<Result<IEnumerable<DeviceData>>> GetDataForDashboard();
+		Task<Result<IEnumerable<DeviceDashboardData>>> GetDataForDashboard();
 
 		Task<Result> ClearDataStorage();
 	}

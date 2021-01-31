@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "0c6ee313-793d-4bb6-82fe-eec3b34431d4",
+		"name": "TestDeviceDataApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clean Device Storage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 Response\", () => pm.response.to.have.status(200))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/device-data",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"device-data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Record DeviceTypeA Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 Response\", () => pm.response.to.have.status(200))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"PartnerId\": 1,\r\n  \"PartnerName\": \"Foo1\",\r\n  \"Trackers\": [\r\n    {\r\n      \"Id\": 1,\r\n      \"Model\": \"ABC-100\",\r\n      \"ShipmentStartDtm\": \"08-17-2020 10:30:00\",\r\n      \"Sensors\": [\r\n        {\r\n          \"Id\": 100,\r\n          \"Name\": \"Temperature\",\r\n          \"Crumbs\": [\r\n            {\r\n              \"CreatedDtm\": \"08-17-2020 10:35:00\",\r\n              \"Value\": 22.15\r\n            },\r\n            {\r\n              \"CreatedDtm\": \"08-17-2020 10:40:00\",\r\n              \"Value\": 23.15\r\n            },\r\n            {\r\n              \"CreatedDtm\": \"08-17-2020 10:45:00\",\r\n              \"Value\": 24.15\r\n            }\r\n          ]\r\n        },\r\n        {\r\n          \"Id\": 101,\r\n          \"Name\": \"Humidty\",\r\n          \"Crumbs\": [\r\n            {\r\n              \"CreatedDtm\": \"08-17-2020 10:35:00\",\r\n              \"Value\": 80.5\r\n            },\r\n            {\r\n              \"CreatedDtm\": \"08-17-2020 10:40:00\",\r\n              \"Value\": 81.5\r\n            },\r\n            {\r\n              \"CreatedDtm\": \"08-17-2020 10:45:00\",\r\n              \"Value\": 82.5\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"Id\": 2,\r\n      \"Model\": \"ABC-200\",\r\n      \"ShipmentStartDtm\": \"08-18-2020 10:30:00\",\r\n      \"Sensors\": [\r\n        {\r\n          \"Id\": 200,\r\n          \"Name\": \"Temperature\",\r\n          \"Crumbs\": [\r\n            {\r\n              \"CreatedDtm\": \"08-18-2020 10:35:00\",\r\n              \"Value\": 23.15\r\n            },\r\n            {\r\n              \"CreatedDtm\": \"08-18-2020 10:40:00\",\r\n              \"Value\": 24.15\r\n            },\r\n            {\r\n              \"CreatedDtm\": \"08-18-2020 10:45:00\",\r\n              \"Value\": 25.15\r\n            }\r\n          ]\r\n        },\r\n        {\r\n          \"Id\": 201,\r\n          \"Name\": \"Humidty\",\r\n          \"Crumbs\": [\r\n            {\r\n              \"CreatedDtm\": \"08-18-2020 10:35:00\",\r\n              \"Value\": 81.5\r\n            },\r\n            {\r\n              \"CreatedDtm\": \"08-18-2020 10:40:00\",\r\n              \"Value\": 82.5\r\n            },\r\n            {\r\n              \"CreatedDtm\": \"08-18-2020 10:45:00\",\r\n              \"Value\": 83.5\r\n            }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/device-type-a-data",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"device-type-a-data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Record DeviceTypeB Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 Response\", () => pm.response.to.have.status(200))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"CompanyId\": 2,\r\n  \"Company\": \"Foo2\",\r\n  \"Devices\": [\r\n    {\r\n      \"DeviceID\": 1,\r\n      \"Name\": \"XYZ-100\",\r\n      \"StartDateTime\": \"08-18-2020 10:30:00\",\r\n      \"SensorData\": [\r\n        {\r\n          \"SensorType\": \"TEMP\",\r\n          \"DateTime\": \"08-18-2020 10:35:00\",\r\n          \"Value\": 32.15\r\n        },\r\n        {\r\n          \"SensorType\": \"TEMP\",\r\n          \"DateTime\": \"08-18-2020 10:40:00\",\r\n          \"Value\": 33.15\r\n        },\r\n        {\r\n          \"SensorType\": \"TEMP\",\r\n          \"DateTime\": \"08-18-2020 10:45:00\",\r\n          \"Value\": 34.15\r\n        },\r\n        {\r\n          \"SensorType\": \"HUM\",\r\n          \"DateTime\": \"08-18-2020 10:35:00\",\r\n          \"Value\": 90.5\r\n        },\r\n        {\r\n          \"SensorType\": \"HUM\",\r\n          \"DateTime\": \"08-18-2020 10:40:00\",\r\n          \"Value\": 91.5\r\n        },\r\n        {\r\n          \"SensorType\": \"HUM\",\r\n          \"DateTime\": \"08-18-2020 10:45:00\",\r\n          \"Value\": 92.5\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"DeviceID\": 2,\r\n      \"Name\": \"XYZ-200\",\r\n      \"StartDateTime\": \"08-19-2020 10:30:00\",\r\n      \"SensorData\": [\r\n        {\r\n          \"SensorType\": \"TEMP\",\r\n          \"DateTime\": \"08-19-2020 10:35:00\",\r\n          \"Value\": 42.15\r\n        },\r\n        {\r\n          \"SensorType\": \"TEMP\",\r\n          \"DateTime\": \"08-19-2020 10:40:00\",\r\n          \"Value\": 43.15\r\n        },\r\n        {\r\n          \"SensorType\": \"TEMP\",\r\n          \"DateTime\": \"08-19-2020 10:45:00\",\r\n          \"Value\": 44.15\r\n        },\r\n        {\r\n          \"SensorType\": \"HUM\",\r\n          \"DateTime\": \"08-19-2020 10:35:00\",\r\n          \"Value\": 91.5\r\n        },\r\n        {\r\n          \"SensorType\": \"HUM\",\r\n          \"DateTime\": \"08-19-2020 10:40:00\",\r\n          \"Value\": 92.5\r\n        },\r\n        {\r\n          \"SensorType\": \"HUM\",\r\n          \"DateTime\": \"08-19-2020 10:45:00\",\r\n          \"Value\": 93.5\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/device-type-b-data",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"device-type-b-data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Dashboard Dat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"200 Response\", () => pm.response.to.have.status(200))\r",
+							"\r",
+							"let response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"4 Devices Returned\", () => {\r",
+							"    pm.expect(response.length).to.equal(4);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Object Structure Match Expected Response\", () => {\r",
+							"    let item = response[0];\r",
+							"\r",
+							"    pm.expect(item).to.have.all.keys('companyId', 'companyName', 'trackerId', 'trackerName', 'startDate', 'firstCrumbDtm', 'lastCrumbDtm', 'tempCount', 'avgTemp', 'humidityCount', 'avgHumidity',);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tracker ABC-100 Data Calculated Correctly\", () => {\r",
+							"    let item = response.find(x => x.trackerName === 'ABC-100');\r",
+							"\r",
+							"    pm.expect(item.trackerName).to.equal('ABC-100');\r",
+							"    pm.expect(item.tempCount).to.equal(3);\r",
+							"    pm.expect(item.humidityCount).to.equal(3);\r",
+							"    pm.expect(item.avgTemp).to.equal(23.15);\r",
+							"    pm.expect(item.avgHumidity).to.equal(81.5);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tracker ABC-200 Data Calculated Correctly\", () => {\r",
+							"    let item = response.find(x => x.trackerName === 'ABC-200');\r",
+							"\r",
+							"    pm.expect(item.trackerName).to.equal('ABC-200');\r",
+							"    pm.expect(item.tempCount).to.equal(3);\r",
+							"    pm.expect(item.humidityCount).to.equal(3);\r",
+							"    pm.expect(item.avgTemp).to.equal(24.15);\r",
+							"    pm.expect(item.avgHumidity).to.equal(82.5);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tracker XYZ-100 Data Calculated Correctly\", () => {\r",
+							"    let item = response.find(x => x.trackerName === 'XYZ-100');\r",
+							"\r",
+							"    pm.expect(item.trackerName).to.equal('XYZ-100');\r",
+							"    pm.expect(item.tempCount).to.equal(3);\r",
+							"    pm.expect(item.humidityCount).to.equal(3);\r",
+							"    pm.expect(item.avgTemp).to.equal(33.15);\r",
+							"    pm.expect(item.avgHumidity).to.equal(91.5);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tracker XYZ-200 Data Calculated Correctly\", () => {\r",
+							"    let item = response.find(x => x.trackerName === 'XYZ-200');\r",
+							"\r",
+							"    pm.expect(item.trackerName).to.equal('XYZ-200');\r",
+							"    pm.expect(item.tempCount).to.equal(3);\r",
+							"    pm.expect(item.humidityCount).to.equal(3);\r",
+							"    pm.expect(item.avgTemp).to.equal(43.15);\r",
+							"    pm.expect(item.avgHumidity).to.equal(92.5);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/device-data",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"device-data"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

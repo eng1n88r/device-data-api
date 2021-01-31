@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using DeviceDataApi.Contracts;
 
 namespace DeviceDataApi.Repositories.Interfaces
 {
 	public interface IRepository
 	{
-		Task SaveDataData(DeviceData data);
+		Task SaveDataData(IEnumerable<DeviceData> data);
 
-		Task<IEnumerable<DeviceData>> ReadData();
+		Task<IEnumerable<DeviceData>> GetMeasurements();
 
 		Task ClearData();
 	}

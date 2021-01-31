@@ -7,30 +7,25 @@ namespace DeviceDataApi.DataProcessors
 {
 	public class DeviceTypeBDataProcessor : DeviceBProcessor
 	{
-		public override DeviceData ProcessDeviceData(DeviceTypeB data)
+		public override IList<DeviceData> ProcessDeviceData(DeviceTypeBOutput data)
 		{
 			if (data == null)
 			{
 				return null;
 			}
 
-			var deviceData = new DeviceData
-			{
-				CompanyId = data.CompanyId,
-				CompanyName = data.Company,
-				Devices = new List<MeasurementDevice>()
-			};
+			var result = new List<DeviceData>();
 
 			foreach (var item in data.Devices)
 			{
-				var device = new MeasurementDevice
+				var deviceData = new DeviceData
 				{
+					CompanyId = data.CompanyId,
+					CompanyName = data.Company,
 					Id = item.DeviceID,
 					Name = item.Name,
 					StartDate = DateTime.Parse(item.StartDateTime),
 				};
-
-				deviceData.Devices.Add(device);
 
 				var measurements = new List<Measurement>();
 
@@ -48,10 +43,12 @@ namespace DeviceDataApi.DataProcessors
 					measurements.Add(measurement);
 				}
 
-				device.Measurements = measurements;
+				deviceData.Measurements = measurements;
+
+				result.Add(deviceData);
 			}
 
-			return deviceData;
+			return result;
 		}
 
 		public override MeasurementType IdentifyMeasurementType(string measurement)

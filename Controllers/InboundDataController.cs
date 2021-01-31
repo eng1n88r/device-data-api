@@ -10,9 +10,9 @@ namespace DeviceDataApi.Controllers
 	[Route("api/v1")]
 	public class InboundDataController : ControllerBase
 	{
-		private readonly IDeviceDataProcessingService _dataProcessingService;
+		private readonly IDataProcessingService _dataProcessingService;
 
-		public InboundDataController(IDeviceDataProcessingService dataProcessingService)
+		public InboundDataController(IDataProcessingService dataProcessingService)
 		{
 			_dataProcessingService = dataProcessingService;
 		}
@@ -25,7 +25,7 @@ namespace DeviceDataApi.Controllers
 
 			if (result.IsSuccess)
 			{
-				return Ok(result);
+				return Ok(result.Data);
 			}
 
 			return StatusCode(500, result.Message);
@@ -33,13 +33,13 @@ namespace DeviceDataApi.Controllers
 
 		[HttpPost]
 		[Route("device-type-a-data")]
-		public async Task<IActionResult> SaveDeviceTypeAData(DeviceTypeA input)
+		public async Task<IActionResult> SaveDeviceTypeAData(DeviceTypeAOutput input)
 		{
 			var result = await _dataProcessingService.ProcessDeviceTypeAData(input);
 
 			if (result.IsSuccess)
 			{
-				return Ok(result);
+				return Ok();
 			}
 
 			return StatusCode(500, result.Message);
@@ -47,7 +47,7 @@ namespace DeviceDataApi.Controllers
 
 		[HttpPost]
 		[Route("device-type-b-data")]
-		public async Task<IActionResult> SaveDeviceTypeBData(DeviceTypeB input)
+		public async Task<IActionResult> SaveDeviceTypeBData(DeviceTypeBOutput input)
 		{
 			var result = await _dataProcessingService.ProcessDeviceTypeBData(input);
 

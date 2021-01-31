@@ -5,18 +5,13 @@ namespace DeviceDataApi.Contracts
 {
 	public class DeviceData
 	{
-		public int CompanyId { get; set; }
-
-		public string CompanyName { get; set; }
-
-		public IList<MeasurementDevice> Devices { get; set; }
-	}
-
-	public class MeasurementDevice
-	{
 		public int? Id { get; set; }
 
 		public string Name { get; set; }
+
+		public int CompanyId { get; set; }
+
+		public string CompanyName { get; set; }
 
 		public DateTime StartDate { get; set; }
 

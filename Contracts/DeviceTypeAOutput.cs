@@ -2,7 +2,7 @@
 
 namespace DeviceDataApi.Contracts
 {
-	public class DeviceTypeA
+	public class DeviceTypeAOutput
 	{
 		public int PartnerId { get; set; }
 		public string PartnerName { get; set; }

@@ -38,7 +38,7 @@ namespace DeviceDataApi
 
 			services.AddScoped<IRepository, InMemoryDistributedRepository>();
 			services.AddScoped<DeviceProcessorFactory, DeviceDataProcessorFactory>();
-			services.AddScoped<IDeviceDataProcessingService, DeviceDataProcessingService>();
+			services.AddScoped<IDataProcessingService, DataProcessingService>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
