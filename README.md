@@ -18,6 +18,7 @@ Assuming that we have two different types of measuring IoT devices that are call
 **Option 1** - one generic endpoint that will accept differently structured JSONs and then we try to deserialize it into know types.
 
 Pros of this approach is that all our devices could have the same firmware of the api client.
+Cons - fuzzy logic of device type identification.
 
 **Option 2** - enpoint per device type. Each device is calling into specific endpoint (_/api/v1/device-type-a-data_ or _device-type-b-data_) to report their measurements.
 
