@@ -72,5 +72,19 @@ namespace DeviceDataApi.Controllers
 
 			return StatusCode(500, result.Message);
 		}
+
+		[HttpPost]
+		[Route("device-data")]
+		public async Task<IActionResult> SaveDeviceData([FromBody] object input)
+		{
+			var result = await _dataProcessingService.ProcessDeviceData(input);
+
+			if (result.IsSuccess)
+			{
+				return Ok();
+			}
+
+			return StatusCode(500, result.Message);
+		}
 	}
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 using DeviceDataApi.Contracts;
-using DeviceDataApi.DataProcessors;
 using DeviceDataApi.DataProcessors.Interfaces;
 using DeviceDataApi.Repositories.Interfaces;
 using DeviceDataApi.Services.Interfaces;
@@ -33,6 +33,20 @@ namespace DeviceDataApi.Services
 		{
 			try
 			{
+				if (data == null)
+				{
+					return Result.Fail("No data was sent");
+				}
+
+				var deviceData = TryProcessDeviceInput(data.ToString());
+
+				if (deviceData == null)
+				{
+					return Result.Fail("Failed to process device input");
+				}
+
+				await _repository.SaveDataData(deviceData);
+
 				return Result.Ok();
 			}
 			catch (Exception ex)
@@ -85,7 +99,7 @@ namespace DeviceDataApi.Services
 				}
 
 				var result = ProcessDataForDashboard(data);
-				
+
 				return Result.Ok(result);
 			}
 			catch (Exception ex)
@@ -130,6 +144,26 @@ namespace DeviceDataApi.Services
 				.ToList();
 
 			return result;
+		}
+
+		private IEnumerable<DeviceData> TryProcessDeviceInput(string jsonData)
+		{
+			if (string.IsNullOrEmpty(jsonData))
+			{
+				return null;
+			}
+
+			var deviceB = JsonSerializer.Deserialize<DeviceTypeBData>(jsonData);
+
+			if (deviceB.Devices == null)
+			{
+				var deviceA = JsonSerializer.Deserialize<DeviceTypeAData>(jsonData);
+
+				return _deviceAProcessor.ProcessDeviceData(deviceA);
+
+			}
+
+			return _deviceBProcessor.ProcessDeviceData(deviceB);
 		}
 	}
 }
