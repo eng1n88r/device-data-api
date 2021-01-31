@@ -33,7 +33,7 @@ namespace DeviceDataApi.Controllers
 
 		[HttpPost]
 		[Route("device-type-a-data")]
-		public async Task<IActionResult> SaveDeviceTypeAData(DeviceTypeAOutput input)
+		public async Task<IActionResult> SaveDeviceTypeAData(DeviceTypeAData input)
 		{
 			var result = await _dataProcessingService.ProcessDeviceTypeAData(input);
 
@@ -47,7 +47,7 @@ namespace DeviceDataApi.Controllers
 
 		[HttpPost]
 		[Route("device-type-b-data")]
-		public async Task<IActionResult> SaveDeviceTypeBData(DeviceTypeBOutput input)
+		public async Task<IActionResult> SaveDeviceTypeBData(DeviceTypeBData input)
 		{
 			var result = await _dataProcessingService.ProcessDeviceTypeBData(input);
 

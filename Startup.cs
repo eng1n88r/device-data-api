@@ -1,4 +1,6 @@
+using DeviceDataApi.Contracts;
 using DeviceDataApi.DataProcessors;
+using DeviceDataApi.DataProcessors.Interfaces;
 using DeviceDataApi.Repositories;
 using DeviceDataApi.Repositories.Interfaces;
 using DeviceDataApi.Services;
@@ -37,7 +39,8 @@ namespace DeviceDataApi
 				.AddDistributedMemoryCache();
 
 			services.AddScoped<IRepository, InMemoryDistributedRepository>();
-			services.AddScoped<DeviceProcessorFactory, DeviceDataProcessorFactory>();
+			services.AddScoped<IDeviceDataProcessor<DeviceTypeAData>, DeviceTypeADataProcessor>();
+			services.AddScoped<IDeviceDataProcessor<DeviceTypeBData>, DeviceTypeBDataProcessor>();
 			services.AddScoped<IDataProcessingService, DataProcessingService>();
 		}
 

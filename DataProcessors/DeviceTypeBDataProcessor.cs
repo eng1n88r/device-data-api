@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 
 using DeviceDataApi.Contracts;
+using DeviceDataApi.DataProcessors.Interfaces;
 
 namespace DeviceDataApi.DataProcessors
 {
-	public class DeviceTypeBDataProcessor : DeviceBProcessor
+	public class DeviceTypeBDataProcessor : IDeviceDataProcessor<DeviceTypeBData>
 	{
-		public override IList<DeviceData> ProcessDeviceData(DeviceTypeBOutput data)
+		public IEnumerable<DeviceData> ProcessDeviceData(DeviceTypeBData data)
 		{
 			if (data == null)
 			{
@@ -51,7 +52,7 @@ namespace DeviceDataApi.DataProcessors
 			return result;
 		}
 
-		public override MeasurementType IdentifyMeasurementType(string measurement)
+		public MeasurementType IdentifyMeasurementType(string measurement)
 		{
 			switch (measurement)
 			{

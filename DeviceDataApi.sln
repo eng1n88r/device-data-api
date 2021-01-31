@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeviceDataApi", "DeviceDataApi.csproj", "{2F7C4E78-6C4A-42D5-9AAA-B0263CC0FEE6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{85165493-2A4D-478A-95F4-643246F9098A}"
+	ProjectSection(SolutionItems) = preProject
+		PostmanTests\DeviceDataApi Local.postman_environment.json = PostmanTests\DeviceDataApi Local.postman_environment.json
+		PostmanTests\TestDeviceDataApi.postman_collection.json = PostmanTests\TestDeviceDataApi.postman_collection.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

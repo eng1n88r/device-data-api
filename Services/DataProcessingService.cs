@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 using DeviceDataApi.Contracts;
 using DeviceDataApi.DataProcessors;
+using DeviceDataApi.DataProcessors.Interfaces;
 using DeviceDataApi.Repositories.Interfaces;
 using DeviceDataApi.Services.Interfaces;
 
@@ -14,15 +15,18 @@ namespace DeviceDataApi.Services
 	{
 		private readonly IRepository _repository;
 
-		private readonly DeviceAProcessor _deviceAProcessor;
-		private readonly DeviceBProcessor _deviceBProcessor;
+		private readonly IDeviceDataProcessor<DeviceTypeAData> _deviceAProcessor;
+		private readonly IDeviceDataProcessor<DeviceTypeBData> _deviceBProcessor;
 
-		public DataProcessingService(DeviceProcessorFactory factory, IRepository repository)
+		public DataProcessingService(
+			IRepository repository,
+			IDeviceDataProcessor<DeviceTypeAData> deviceAProcessor,
+			IDeviceDataProcessor<DeviceTypeBData> deviceBProcessor)
 		{
 			_repository = repository;
 
-			_deviceAProcessor = factory.CreateDeviceTypeAProcessor();
-			_deviceBProcessor = factory.CreateDeviceTypeBProcessor();
+			_deviceAProcessor = deviceAProcessor;
+			_deviceBProcessor = deviceBProcessor;
 		}
 
 		public async Task<Result> ProcessDeviceData(object data)
@@ -37,7 +41,7 @@ namespace DeviceDataApi.Services
 			}
 		}
 
-		public async Task<Result> ProcessDeviceTypeAData(DeviceTypeAOutput data)
+		public async Task<Result> ProcessDeviceTypeAData(DeviceTypeAData data)
 		{
 			try
 			{
@@ -53,7 +57,7 @@ namespace DeviceDataApi.Services
 			}
 		}
 
-		public async Task<Result> ProcessDeviceTypeBData(DeviceTypeBOutput data)
+		public async Task<Result> ProcessDeviceTypeBData(DeviceTypeBData data)
 		{
 			try
 			{
